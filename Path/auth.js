@@ -21,10 +21,9 @@ Router.post("/refresh-token",async (req,res)=>{
     if(!refresh_token && !Email) res.status(401).send()
     const result = await RefreshToken.find({token:refresh_token}).then(res=>res)
     if(result){
-        const token = jwt.sign({Email:Email},SECRET_KEY,{expiresIn:EXP_PER})
+        const token = jwt.sign({Email:Email},process.env.SECRET_KEY,{expiresIn:process.env.EXP_PER})
         res.status(200)
-        res.header("Access-Control-Allow-Origin","https://codsoft-1-z2b7.onrender.com");
-        res.cookie("access-token",token,{path:"/",secure:true,domain:"codsoft-1-z2b7.onrender.com"})
+        res.cookie("access-token",token,{path:"/",secure:true})
         res.send()
     }
     else{
@@ -62,10 +61,9 @@ Router.get("/login",Authentication,(req,res)=>{
         if(obj)  {delete obj.Password; delete obj.Token}  ;
         res.status(200);
         res.header("Access-Control-Allow-Headers","*");
-        res.header("Access-Control-Allow-Origin","https://codsoft-1-z2b7.onrender.com");
         res.header('Access-Control-Allow-Credentials', true);
         res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.cookie("access_token",req.token,{path:"/",httpOnly:false,sameSite:"none",secure:true,domain:"codsoft-1-z2b7.onrender.com"})
+    res.cookie("access_token",req.token,{path:"/",httpOnly:false,sameSite:"none",secure:true})
     res.json({"user":obj});
 }).catch(err=> res.status(400).send())
 

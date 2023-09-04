@@ -50,18 +50,21 @@ Router.post("/Edit/Profile",Authentication,async(req,res)=>{
    Object.entries(req.body).forEach((item)=> item[1]!== undefined ? obj[item[0]]=item[1] : false)
    let {user_id}=req.cookies;
    console.log(obj['Email'])
-     let e = await User.findOne({Email:obj['Email'],_id:{$ne:user_id}}).then(res=>res)
-     let p = await User.findOne({Phone:obj['Phone'],_id:{$ne:user_id}}).then(res=>res)
+   let e =false, p=false;
+
+     if(obj["Email"]!==undefined) e = await User.findOne({Email:obj['Email'],_id:{$ne:user_id}}).then(res=>res);
+
+     if(obj["Phone"]!==undefined) p = await User.findOne({Phone:obj['Phone'],_id:{$ne:user_id}}).then(res=>res)
+
      console.log(e,p)
-    if(e&&[obj['Email']] || p&&obj['Phone']){
-        res.status(409).send()
+
+    if(e || p){
+        return res.status(409).send()
     }
    
    let result =  await User.updateOne({_id:user_id},{$set:obj})
    console.log(result)
-   if(result.modifiedCount){res.status(200)
-    if(obj['Email']) res.cookie("email",obj["Email"]) 
-    res.send()}
+   if(result.modifiedCount)res.status(200).send()
    else res.status(400).send()
 
 })

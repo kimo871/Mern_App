@@ -6,6 +6,8 @@ const { RefreshToken } = require("../Models/index.js")
 
 require("dotenv").config({path:"./Config/.env"})
 
+console.log(process.env.SECRET_KEY,process.env.EXP_PER)
+
 let Authenticate = (req,res,next)=>{
    
    let {access_token,refresh_token,email} = req.cookies
