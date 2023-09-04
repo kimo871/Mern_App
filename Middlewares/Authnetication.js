@@ -18,7 +18,7 @@ let Authenticate = (req,res,next)=>{
         if(err){
           RefreshToken.find({token:refresh_token}).then(result=> {
             if(result){
-             const token = jwt.sign({Email:email},SECRET_KEY,{expiresIn:process.env.EXP_PER});
+             const token = jwt.sign({Email:email},process.env.SECRET_KEY,{expiresIn:process.env.EXP_PER});
              req.token=token;
             }
           })
