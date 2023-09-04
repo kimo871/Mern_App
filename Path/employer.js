@@ -94,10 +94,9 @@ Router.post("/Edit/Profile",Authentication,async(req,res)=>{
         console.log(obj)
         res.status(200);
         res.header("Access-Control-Allow-Headers","*");
-        res.header("Access-Control-Allow-Origin","https://codsoft-1-z2b7.onrender.com");
-            res.header('Access-Control-Allow-Credentials', true);
-            res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-        res.cookie("access_token",req.token,{path:"/",httpOnly:false,sameSite:"none",secure:true,domain:"codsoft-1-z2b7.onrender.com"})
+        res.header('Access-Control-Allow-Credentials', true);
+        res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+        res.cookie("access_token",req.token,{path:"/",httpOnly:false,sameSite:"none",secure:true})
         res.json({"user":obj});})
  })
 
