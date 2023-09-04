@@ -59,7 +59,9 @@ Router.post("/Edit/Profile",Authentication,async(req,res)=>{
    
    let result =  await User.updateOne({_id:user_id},{$set:obj})
    console.log(result)
-   if(result.modifiedCount)res.status(200).cookie("email",result.Email).send()
+   if(result.modifiedCount){res.status(200)
+    (obj['Email'] !== undefined ? res.cookie("email",obj["Email"]) : false)
+    res.send()}
    else res.status(400).send()
 
 })
