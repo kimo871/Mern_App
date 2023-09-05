@@ -40,7 +40,6 @@ Router.get("/Logout",(req,res)=>{
 
 
 
-
 Router.post("/SignIn",SignInController)
 
 Router.post("/Logout",Authentication,(req,res)=>{
@@ -51,28 +50,21 @@ Router.post("/Logout",Authentication,(req,res)=>{
 
 
 
-
-
 Router.get("/login",Authentication,(req,res)=>{
     const {user_id} = req.cookies;
     User.findOne({_id:user_id}).then(result=>{
-        //let obj=Object.assign({},{_id:result._id,Name:result.Name,Email:result.Email,DateOfBirth:result.DateOfBirth,Phone:result.Phone,Role:result.Role,Image:result.Image});
         let obj  = result;
         if(obj)  {delete obj.Password; delete obj.Token}  ;
         res.status(200);
         res.header("Access-Control-Allow-Headers","*");
         res.header('Access-Control-Allow-Credentials', true);
         res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.cookie("access_token",req.token,{path:"/",httpOnly:false,sameSite:"none",secure:true})
-    res.json({"user":obj});
+        res.cookie("access_token",req.token,{path:"/",httpOnly:false,sameSite:"none",secure:true})
+        res.json({"user":obj});
 }).catch(err=> res.status(400).send())
 
 })
 
    
-
-
-
-
 
 module.exports = Router

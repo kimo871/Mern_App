@@ -81,8 +81,9 @@ Router.post("/Edit/Profile",Authentication,async(req,res)=>{
 
  Router.get("/job/app",async(req,res)=>{
     const {id} = req.query;
-    let y = await Application.find({Job:id,Status:"pending"}).populate("Owner").populate("Job").then(res=>res)
+    let y = await Application.find({Job:id}).populate("Owner").then(res=>res)
     console.log(y)
+    res.status(200);
     res.json({"applications":y})
 
  })
