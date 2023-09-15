@@ -9,6 +9,7 @@
   <li>Search Jobs <ul><li>Filter By Categories and Roles</li> <li>Filter By Country & City</li></ul></li>
   <li>Apply to Jobs</li>
   <li>Post Jobs</li>
+  <li>Profile Managment For All different Role Accounts</li>
   <li>Pagination</li>
   <li>Either Accept or Refuse Application</li>
   <li>Sending Email Notifications</li>
