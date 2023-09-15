@@ -6,7 +6,7 @@
 
  ## - Features 
   <ul>
-  <li>Search Jobs <ul><li>hh</li> <li>dd</li></ul></li>
+  <li>Search Jobs <ul><li>Filter By Categories and Roles</li> <li>Filter By Country & City</li></ul></li>
   <li>Apply to Jobs</li>
   <li>Post Jobs</li>
   <li>Pagination</li>
