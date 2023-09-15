@@ -6,7 +6,7 @@
 
  ## - Features 
   <ul>
-  <li>Search Jobs <li>hh</li> <li>dd</li></li>
+  <li>Search Jobs <ul><li>hh</li> <li>dd</li></ul></li>
   <li>Apply to Jobs</li>
   <li>Post Jobs</li>
   <li>Pagination</li>
